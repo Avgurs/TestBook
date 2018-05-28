@@ -24,14 +24,14 @@ namespace TestDelegate
 
         static void Main(string[] args)
         {
-            StrMod strOp = new StrMod(ReplaceSpaces);
+            StrMod strOp = RemoveSpaces;
             string str;
 
             str = strOp("Это простой тест.");
             Console.WriteLine(str);
             Console.WriteLine();
 
-            strOp = new StrMod(RemoveSpaces);
+            strOp = ReplaceSpaces;
             str = strOp("Это простой тест.");
             Console.WriteLine(str);
             Console.WriteLine();
