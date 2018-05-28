@@ -7,10 +7,11 @@ namespace TestDelegate
     {
         public event MyEventHandler SomeEvent;
 
-        public void OnSomeEvent()
+        public void OnSomeEvent(int i)
         {
             if (SomeEvent != null)
                 SomeEvent();
+            Console.WriteLine("i = " + i);
         }
     }
     class EventDemo
@@ -25,7 +26,7 @@ namespace TestDelegate
 
             evt.SomeEvent += Handler;
 
-            evt.OnSomeEvent();
+            evt.OnSomeEvent(8);
             Console.ReadKey();
 
         }
