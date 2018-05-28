@@ -8,6 +8,7 @@ namespace TestReadWrite
     {
         static void Main(string[] args)
         {
+
             StreamWriter log_out = null;
             try
             {
