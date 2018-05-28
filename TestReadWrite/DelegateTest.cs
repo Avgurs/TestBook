@@ -5,6 +5,7 @@ namespace TestDelegate
     delegate void StrMod(ref string str);
     class MultiCastDemo
     {
+
         static void ReplaceSpaces(ref string s)
         {
             Console.WriteLine("Замена символов т-Т.");
