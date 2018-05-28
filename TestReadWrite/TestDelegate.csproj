@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DdelegateTest.cs" />
+    <Compile Include="DelegateTest.cs" />
     <Compile Include="NewClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
