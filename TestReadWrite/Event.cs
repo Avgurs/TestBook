@@ -1,72 +1,32 @@
 ﻿using System;
 
-namespace TestDelegate
+namespace TestEvent
 {
-    class MyEventArgs : EventArgs
-    {
-        public int EventNum;
-    }
-
-    delegate void MyEventHandler(object source, MyEventArgs arg);
-
     class MyEvent
     {
-        static int count = 0;
-
-        public event MyEventHandler SomeEvent;
+        public event EventHandler SomeEvent;
 
         public void OnSomeEvent()
         {
-            MyEventArgs arg = new MyEventArgs();
-
-            if(SomeEvent != null)
-            {
-                arg.EventNum = count++;
-                SomeEvent(this, arg);
-            }
+            if (SomeEvent != null)
+                SomeEvent(this, EventArgs.Empty);
         }
     }
-
-    class X
+    class EventDemo7
     {
-        public void Handler(object source, MyEventArgs arg)
+        static void Handler(object source, EventArgs arg)
         {
-            Console.WriteLine("Событие " + arg.EventNum + " получено объектом класса X.");
-            Console.WriteLine("Источник: " + source);
-            Console.WriteLine();
+            Console.WriteLine("Произошло событие");
+            Console.WriteLine("Источник " + source);
         }
-    }
-
-    class Y
-    {
-        public void Handler(object source, MyEventArgs arg)
-        {
-            Console.WriteLine("Событие " + arg.EventNum + " получено объектом класса Y.");
-            Console.WriteLine("Источник: " + source);
-            Console.WriteLine();
-        }
-    }
-
-    class EventDemo6
-    {
-        
         static void Main()
         {
-            X ob1 = new X();
-            Y ob2 = new Y();
             MyEvent evt = new MyEvent();
+            evt.SomeEvent += Handler;
 
-            //Добавить обработчик Handler() в цепочку событий
-            evt.SomeEvent += ob1.Handler;
-            evt.SomeEvent += ob2.Handler;
-
-            evt.OnSomeEvent();
-            evt.OnSomeEvent();
             evt.OnSomeEvent();
 
             Console.ReadKey();
-
         }
-
     }
 }
