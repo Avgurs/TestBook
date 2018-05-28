@@ -2,16 +2,16 @@
 
 namespace TestDelegate
 {
-    delegate string StrMod(string str);
-    class DelegateTest
+    delegate void StrMod(ref string str);
+    class MultiCastDemo
     {
-        static string ReplaceSpaces(string s)
+        static void ReplaceSpaces(ref string s)
         {
-            Console.WriteLine("Замена пробелов дефисами.");
-            return s.Replace(' ', '-');
+            Console.WriteLine("Замена символов т-Т.");
+            s = s.Replace('т', 'Т');
         }
 
-        static string RemoveSpaces(string s)
+        static void RemoveSpaces(ref string s)
         {
             Console.WriteLine("Удаление пробелов.");
             string temp = "";
@@ -19,23 +19,21 @@ namespace TestDelegate
             {
                 if (s[i] != ' ') temp += s[i];
             }
-            return temp;
+            s = temp;
         }
 
         static void Main(string[] args)
         {
-            StrMod strOp = RemoveSpaces;
-            string str;
+            StrMod strOp;
+            StrMod replaceSp = ReplaceSpaces;
+            StrMod removeSp = RemoveSpaces;
+            string str = "Это простой тест.";
 
-            str = strOp("Это простой тест.");
+            strOp = replaceSp;
+            strOp += removeSp;
+
+            strOp(ref str);
             Console.WriteLine(str);
-            Console.WriteLine();
-
-            strOp = ReplaceSpaces;
-            str = strOp("Это простой тест.");
-            Console.WriteLine(str);
-            Console.WriteLine();
-
             Console.ReadKey();
 
         }
